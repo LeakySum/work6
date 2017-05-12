@@ -3,73 +3,73 @@
 using namespace std;
 
 class complex {
-	double a;
-	double b;
+	double real;
+	double comp;
 
 public:
-	complex(double a, double b)
+	complex(double real, double comp)
 	{
-		this->a = a;
-		this->b = b;
+		this->real = real;
+		this->comp= comp;
 	}
 
 
 	complex() 
 	{
-		a = 0;
-		b = 0;
+		real = 0;
+		comp = 0;
 	}
 
 	void sum(complex num1, complex num2 )
 	{
-		double a1=0.0, b1=0.0;
+		double real1=0.0, comp1=0.0;
 		cout << "sum=";
-		a1 = num1.a+ num2.a;
-		b1 += num1.b + num2.b;
-		cout << a1 << " + i*(" << b1 << ')' << endl;
+		real1 = num1.real+ num2.real;
+		comp1 += num1.comp + num2.comp;
+		cout << real1 << " + i*(" << comp1 << ')' << endl;
 	}
 	
 	void sub(complex num1, complex num2 )
 	{
-		double a1 = 0.0, b1 = 0.0;
+		double real1 = 0.0, comp1 = 0.0;
 		cout << "sub=";
-		a1 = num1.a- num2.a ;
-		b1 = num1.b- num2.b;
-		cout << a1 << " + i*(" << b1 << ')' << endl;
+		real1 = num1.real- num2.real ;
+		comp1 = num1.comp- num2.comp;
+		cout << real1 << " + i*(" << comp1 << ')' << endl;
 	}
 	void mul(complex num1, int x)
 	{
-		double a1 = 0.0, b1 = 0.0;
+		double real1 = 0.0, comp1 = 0.0;
 		cout << "mul=";
 		
-		a1 = num1.a*x;
-		b1 = num1.b*x;
-		cout << a1 << " + i*(" << b1 << ')' << endl;
+		real1 = num1.real*x;
+		comp1 = num1.comp*x;
+		cout << real1 << " + i*(" << comp1 << ')' << endl;
 	}
 	void div(complex num1, int x)
 	{
-		double a1 = 0.0, b1 = 0.0;
+		double real1 = 0.0, comp1 = 0.0;
 		if (x) {
-			a1 = num1.a/x;
-			b1 = num1.b/x;
+			real1 = num1.real/x;
+			comp1 = num1.comp/x;
 			cout << "div=";
 		} else cout << "You can't divide by zero !" << endl;
-		cout << a1 << " + i*(" << b1 << ')' << endl;
+		cout << real1 << " + i*(" << comp1 << ')' << endl;
 	}
 	
 	void print()
 
 	{
-	cout << a << " + i*(" << b << ')' << endl;
+	cout << real << " + i*(" << comp << ')' << endl;
 	}
 };
 
 int main()
 {
-	int a = 10, b = 6;
-	complex num1(a, b); num1.print();
-	a = 5, b = 4; 
-	complex num2(a, b);  num2.print();
+	int real = 10, comp = 6;
+	complex num1(real, comp); num1.print();
+	real = 5, comp = 4; 
+	complex num2(real, comp);  num2.print();
 	cout << 4 << " " << 2 << endl;
 	num1.sum(num1,num2); 	
 	num1.sub(num1, num2);
