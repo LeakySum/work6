@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include <conio.h>
 #include <iostream>
 using namespace std;
 
@@ -10,71 +11,79 @@ public:
 	complex(double real, double comp)
 	{
 		this->real = real;
-		this->comp= comp;
+		this->comp = comp;
 	}
 
 
-	complex() 
+	complex()
 	{
 		real = 0;
 		comp = 0;
 	}
 
-	void sum(complex num1, complex num2 )
+	void print(ostream&)
 	{
-		double real1=0.0, comp1=0.0;
-		cout << "sum=";
-		real1 = num1.real+ num2.real;
-		comp1 += num1.comp + num2.comp;
-		cout << real1 << " + i*(" << comp1 << ')' << endl;
+		cout << real << " + i*(" << comp << ')' << endl;
 	}
-	
-	void sub(complex num1, complex num2 )
-	{
-		double real1 = 0.0, comp1 = 0.0;
-		cout << "sub=";
-		real1 = num1.real- num2.real ;
-		comp1 = num1.comp- num2.comp;
-		cout << real1 << " + i*(" << comp1 << ')' << endl;
-	}
-	void mul(complex num1, int x)
-	{
-		double real1 = 0.0, comp1 = 0.0;
-		cout << "mul=";
-		
-		real1 = num1.real*x;
-		comp1 = num1.comp*x;
-		cout << real1 << " + i*(" << comp1 << ')' << endl;
-	}
-	void div(complex num1, int x)
-	{
-		double real1 = 0.0, comp1 = 0.0;
-		if (x) {
-			real1 = num1.real/x;
-			comp1 = num1.comp/x;
-			cout << "div=";
-		} else cout << "You can't divide by zero !" << endl;
-		cout << real1 << " + i*(" << comp1 << ')' << endl;
-	}
-	
-	void print()
 
+	friend ostream& operator << (ostream&, const complex&);
+
+	complex sum(complex num1, complex num2)
 	{
-	cout << real << " + i*(" << comp << ')' << endl;
+		complex res(0.0, 0.0);
+		cout << "sum  " ;
+		res.real = num1.real + num2.real;
+		res.comp = num1.comp + num2.comp;
+		return res;
+	}
+
+	complex sub(complex num1, complex num2)
+	{
+		complex res(0.0, 0.0);
+		cout << "sub  ";
+		res.real = num1.real - num2.real;
+		res.comp = num1.comp - num2.comp;
+		return res;
+	}
+	complex mul(complex num, int x)
+	{
+		complex res(0.0, 0.0);
+		cout << "mul  ";
+		res.real = num.real*x;
+		res.comp = num.comp*x;
+		return res;
+	}
+	complex div(complex num, int x)
+	{
+		complex res(0.0, 0.0);
+		if (x) {
+			res.real = num.real / x;
+			res.comp = num.comp / x;
+			cout << "div  ";
+		}
+		else cout << "You can't divide by zero !" << endl;
+		return res;
 	}
 };
 
+ostream & operator<<(ostream & out, complex &numb)
+
+{
+	numb.print(out);
+	return out;
+}
+
 int main()
 {
-	int real = 10, comp = 6;
-	complex num1(real, comp); num1.print();
-	real = 5, comp = 4; 
-	complex num2(real, comp);  num2.print();
+	complex res(0.0, 0.0);
+	complex num1(10, 3); cout << num1;
+	complex num2(5, 4);  cout << num2;
 	cout << 4 << " " << 2 << endl;
-	num1.sum(num1,num2); 	
-	num1.sub(num1, num2);
-	num1.mul(num1, 4);
-	num1.div(num1, 2);
+
+	res = num1.sum(num1, num2); cout << res;
+	res = num1.sub(num1, num2); cout << res;
+	res = num1.mul(num1, 4); cout << res;
+	res = num1.div(num1, 2); cout << res;
 	system("pause");
 }
 
